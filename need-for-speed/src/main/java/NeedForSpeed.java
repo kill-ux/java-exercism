@@ -39,12 +39,12 @@ class RaceTrack {
     }
 
     public boolean canFinishRace(NeedForSpeed car) {
-        int res = 100;
-        int res_dist = 0;
-        while (res > car.batteryDrain) {
-            res = -car.batteryDrain;
-            res_dist += car.speed;
+        int battery = 100;
+        int full_distance = 0;
+        while (full_distance < this.distance && battery >= car.batteryDrain) {
+            full_distance += car.speed;
+            battery -= car.batteryDrain;
         }
-        return this.distance <= res_dist;
+        return full_distance >= this.distance;
     }
 }
