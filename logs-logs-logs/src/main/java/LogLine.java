@@ -24,3 +24,5 @@ public class LogLine {
         return "" + this.log.nbr + ":" + this.msg;
     }
 }
+
+
