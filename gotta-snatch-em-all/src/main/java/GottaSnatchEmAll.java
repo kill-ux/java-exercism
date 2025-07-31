@@ -27,6 +27,7 @@ class GottaSnatchEmAll {
             copy.retainAll(coll);
         }
         return copy;
+        
     }
 
     static Set<String> allCards(List<Set<String>> collections) {
