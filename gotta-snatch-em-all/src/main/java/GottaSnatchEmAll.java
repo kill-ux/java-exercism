@@ -14,20 +14,11 @@ class GottaSnatchEmAll {
     }
 
     static boolean canTrade(Set<String> myCollection, Set<String> theirCollection) {
-        int can = 0;
-        for (String card : myCollection) {
-            if (!theirCollection.contains(card)) {
-                can++;
-                break;
-            }
-        }
-        for (String card : theirCollection) {
-            if (!myCollection.contains(card)) {
-                can++;
-                break;
-            }
-        }
-        return can == 2;
+        HashSet<String> new_myCollection = new HashSet<>(myCollection);
+        HashSet<String> new_theirCollection = new HashSet<>(theirCollection);
+        new_myCollection.removeAll(theirCollection);
+        new_theirCollection.removeAll(myCollection);
+        return new_myCollection.size() > 0 && new_theirCollection.size() > 0;
     }
 
     static Set<String> commonCards(List<Set<String>> collections) {
@@ -39,6 +30,10 @@ class GottaSnatchEmAll {
     }
 
     static Set<String> allCards(List<Set<String>> collections) {
-        throw new UnsupportedOperationException("Please implement the (static) GottaSnatchEmAll.allCards() method");
+        HashSet<String> copy = new HashSet<String>(collections.get(0));
+        for (Set<String> coll : collections) {
+            copy.addAll(coll);
+        }
+        return copy;
     }
 }
